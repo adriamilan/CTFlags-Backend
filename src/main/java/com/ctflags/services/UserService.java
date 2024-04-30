@@ -57,33 +57,4 @@ public class UserService {
 		return "User added successfully!";
 	}
 
-	public String addUserPoints(Long id, Integer points) {
-		if (points <= 0) {
-			return "Invalid points";
-		}
-
-		Optional<User> userOptional = userRepository.findById(id);
-		if (!userOptional.isPresent()) {
-			return "User not found!";
-		}
-
-		User user = userOptional.get();
-		Integer newTotalPoints = user.getPoints() + points;
-		user.setPoints(newTotalPoints);
-
-		if (user.getRoleId() != 5) {
-			if (newTotalPoints >= 3000) {
-				user.setRoleId(4);
-			} else if (newTotalPoints >= 2000) {
-				user.setRoleId(3);
-			} else if (newTotalPoints >= 1000) {
-				user.setRoleId(2);
-			} else {
-				user.setRoleId(1);
-			}
-		}
-
-		userRepository.save(user);
-		return "Points updated successfully!";
-	}
 }

@@ -40,9 +40,9 @@ public class UserController {
 		return userService.saveUser(user);
 	}
 	
-	@PutMapping("/user/{id}/add/points/{points}")
-	public String addUserPoints(@PathVariable Long id, @PathVariable Integer points) {
-		
-		return userService.addUserPoints(id, points);
-	}
+//	@PutMapping("/user/{id}/add/points/{points}")
+//	public String addUserPoints(@PathVariable Long id, @PathVariable Integer points) {
+//		
+//		return userService.addUserPoints(id, points);
+//	}
 }

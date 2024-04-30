@@ -10,26 +10,20 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Challenges")
+@Table(name = "Challenges")
 public class Challenge {
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+    private String name;
     
-    @Column(name="name")
-    String name;
+    private String description;
     
-    @Column(name="description")
-    String description;
+    private String flag;
     
-    @Column(name="flag")
-    String flag;
+    private Integer points;
     
-    @Column(name="points")
-    Integer Points;
-    
-    @Column(name="difficulty")
-    String difficulty;
+    private String difficulty;
 }
