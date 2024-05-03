@@ -1,10 +1,10 @@
 package com.ctflags.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ctflags.entities.Challenge;
 import com.ctflags.repository.ChallengeRepository;
 
@@ -18,6 +18,13 @@ public class ChallengeService {
 		return challengeRepository.findAll();
 	}
 
+	public Optional<Challenge> findChallengeById(Long id) {
+
+		Optional<Challenge> challenge = challengeRepository.findById(id);
+		
+		return challenge;
+	}
+	
 	public Challenge saveChallenge(Challenge challenge) {
 		return challengeRepository.save(challenge);
 	}
