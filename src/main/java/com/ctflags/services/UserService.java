@@ -31,5 +31,8 @@ public class UserService {
 		userRepository.save(user);
 		return "User added successfully!";
 	}
-
+	
+	public List<User> getTopUsers(int limit) {
+        return userRepository.findTopNOrderByPoints(limit);
+    }
 }

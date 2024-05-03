@@ -38,6 +38,11 @@ public class UserController {
 		return userService.saveUser(user);
 	}
 	
+	@GetMapping("/ranking")
+    public List<User> getTopUsers() {
+        return userService.getTopUsers(20);
+    }
+	
 //	@PutMapping("/user/{id}/add/points/{points}")
 //	public String addUserPoints(@PathVariable Long id, @PathVariable Integer points) {
 //		
