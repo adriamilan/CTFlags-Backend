@@ -30,4 +30,7 @@ public class CareerService {
 		return careerRepository.save(career);
 	}
 	
+	public void deleteCareerById(Long id) {
+	    careerRepository.deleteById(id);
+	}
 }

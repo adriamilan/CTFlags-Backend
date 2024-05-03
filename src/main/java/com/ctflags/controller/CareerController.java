@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,10 @@ public class CareerController {
 	public Career saveCareer(@RequestBody Career career) {
 		System.out.println(career);
 		return careerService.saveCareer(career);
+	}
+	
+	@DeleteMapping("/career/{id}")
+	public void deleteCareer(@PathVariable Long id) {
+	    careerService.deleteCareerById(id);
 	}
 }

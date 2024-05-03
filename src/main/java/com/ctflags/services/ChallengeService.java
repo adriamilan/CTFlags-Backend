@@ -28,4 +28,9 @@ public class ChallengeService {
 	public Challenge saveChallenge(Challenge challenge) {
 		return challengeRepository.save(challenge);
 	}
+
+	public void deleteChallengeById(Long id) {
+	    challengeRepository.deleteById(id);
+	}
+
 }
