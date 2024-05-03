@@ -1,16 +1,15 @@
 package com.ctflags.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ctflags.dtos.UserDTO;
 import com.ctflags.entities.User;
 import com.ctflags.services.UserService;
 
@@ -21,13 +20,13 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping("/users")
-	public List<UserDTO> getUsers() {
+	public List<User> getUsers() {
 		
 		return userService.findAllUsers();
 	}
 	
 	@GetMapping("/user/{id}")
-	public UserDTO getUserById(@PathVariable Long id) {
+	public Optional<User> getUserById(@PathVariable Long id) {
 		
 		return userService.findUserById(id);
 	}
@@ -36,7 +35,6 @@ public class UserController {
 	public String saveUser(@RequestBody User user) {
 		
 		user.setPoints(0);
-		user.setRoleId(1);
 		return userService.saveUser(user);
 	}
 	

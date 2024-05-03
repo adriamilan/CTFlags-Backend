@@ -1,6 +1,7 @@
 package com.ctflags.entities;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,24 +13,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name="Users")
+public class Ranking {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	private String username;
-
-	private String email;
-
-	private Integer points;
-
-//    @Column(name="role_id")
-//    private Integer roleId;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    private String username;
+    
+    private String email;
+    
+    private Integer points;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private Role role;
-
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Role role;
+    
 }
