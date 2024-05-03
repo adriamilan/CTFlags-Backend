@@ -35,4 +35,5 @@ public class UserService {
 	public List<User> getTopUsers(int limit) {
         return userRepository.findTopNOrderByPoints(limit);
     }
+
 }
