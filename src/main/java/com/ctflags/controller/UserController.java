@@ -38,10 +38,10 @@ public class UserController {
 		return userService.saveUser(user);
 	}
 	
-//	@GetMapping("/ranking")
-//    public List<User> getTopUsers() {
-//        return userService.getTopUsers(20);
-//    }
+  	@GetMapping("/ranking")
+      public List<User> getAllTopUsers() {
+          return userService.getAllTopUsers();
+	}
 	
 	@GetMapping("/ranking/{limit}")
 	public Optional<List<User>> getTopUsers(@PathVariable int limit) {

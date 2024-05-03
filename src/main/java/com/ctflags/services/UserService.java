@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.ctflags.entities.User;
 import com.ctflags.repository.UserRepository;
@@ -35,6 +36,10 @@ public class UserService {
 	
 	public List<User> getTopUsers(int limit) {
 		return userRepository.findTopNOrderByPoints(PageRequest.of(0, limit));
+    }
+	
+	public List<User> getAllTopUsers() {
+		return userRepository.findAll(Sort.by(Sort.Direction.DESC, "points"));
     }
 
 }
