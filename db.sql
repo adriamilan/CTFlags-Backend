@@ -50,11 +50,17 @@ CREATE TABLE Careers (
     name VARCHAR(255),
     description TEXT,
     company_name VARCHAR(255),
-    role_id INT,
-    challenge_id INT,
-    FOREIGN KEY (role_id) REFERENCES Roles(id),
-    FOREIGN KEY (challenge_id) REFERENCES Challenges(id)
+    fecha DATE,
+    provincia VARCHAR(255),
+    teletrabajo BOOLEAN,
+    presencial BOOLEAN,
+    hibrido BOOLEAN,
+    salario INT,
+    experiencia INT,
+    jornada_laboral VARCHAR(255),
+    tipo_contrato VARCHAR(255)
 );
+
 
 INSERT INTO Roles (name) VALUES ('Bronze');
 INSERT INTO Roles (name) VALUES ('Plata');
