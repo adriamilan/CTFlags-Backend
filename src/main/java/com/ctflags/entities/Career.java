@@ -1,5 +1,7 @@
 package com.ctflags.entities;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,33 @@ public class Career {
     
     @Column(name="company_name")
     String company_name;
+    
+    @Column(name="fecha")
+    private Date fecha;
+    
+    @Column(name="provincia")
+    private String provincia;
+    
+    @Column(name="teletrabajo")
+    private boolean teletrabajo;
+    
+    @Column(name="presencial")
+    private boolean presencial;
+    
+    @Column(name="hibrido")
+    private boolean hibrido;
+    
+    @Column(name="salario")
+    private int salario;
+    
+    @Column(name="experiencia")
+    private int experiencia;
+    
+    @Column(name="jornada_laboral")
+    private String jornada_laboral;
+    
+    @Column(name="tipo_contrato")
+    private String tipo_contrato;
     
     @Column(name="role_id")
     Integer role_id;

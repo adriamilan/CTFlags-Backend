@@ -58,7 +58,11 @@ CREATE TABLE Careers (
     salario INT,
     experiencia INT,
     jornada_laboral VARCHAR(255),
-    tipo_contrato VARCHAR(255)
+    tipo_contrato VARCHAR(255),
+    role_id INT,
+    challenge_id INT,
+    FOREIGN KEY (role_id) REFERENCES Roles(id),
+    FOREIGN KEY (challenge_id) REFERENCES Challenges(id) ON DELETE CASCADE
 );
 
 
