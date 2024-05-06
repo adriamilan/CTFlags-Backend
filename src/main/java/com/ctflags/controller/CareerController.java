@@ -41,7 +41,7 @@ public class CareerController {
 		return careerService.saveCareer(career);
 	}
 	
-	@PutMapping("/career")
+	@PutMapping("/career/{id}")
 	public ResponseEntity<Career> updateCareer(@PathVariable Long id, @RequestBody Career updatedCareer) {
 	    Optional<Career> existingCareerOptional = careerService.findCareerById(id);
 	    if (existingCareerOptional.isPresent()) {
