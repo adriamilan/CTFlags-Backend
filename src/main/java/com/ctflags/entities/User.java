@@ -24,6 +24,12 @@ public class User {
 	private String email;
 	
 	private String profile_pic;
+	
+	private String linkedin_url;
+	
+	private String github_url;
+	
+	private String hackthebox_url;
 
 	private Integer points;
 

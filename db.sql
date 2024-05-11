@@ -9,13 +9,16 @@ CREATE TABLE Roles (
 );
 
 CREATE TABLE Users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(255) PRIMARY KEY, -- Cambio de INT AUTO_INCREMENT a VARCHAR(255)
     username VARCHAR(255),
     email VARCHAR(255),
-    profile_pic VARCHAR(255), 
+    profile_pic VARCHAR(255), -- Columna para la foto de perfil
+    linkedin_url VARCHAR(255), -- Columna para la URL de LinkedIn
+    github_url VARCHAR(255), -- Columna para la URL de GitHub
+    hackthebox_url VARCHAR(255), -- Columna para la URL de HackTheBox
     points INT DEFAULT 0,
     role_id INT DEFAULT 1,
-    UNIQUE(id, username),
+    UNIQUE(username),
     FOREIGN KEY (role_id) REFERENCES Roles(id)
 );
 
@@ -30,7 +33,7 @@ CREATE TABLE Challenges (
 
 CREATE TABLE Users_Challenges (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    user_id VARCHAR(255), -- Cambio de INT a VARCHAR(255)
     challenge_id INT,
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (challenge_id) REFERENCES Challenges(id)
@@ -38,7 +41,7 @@ CREATE TABLE Users_Challenges (
 
 CREATE TABLE Solutions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    user_id VARCHAR(255), -- Cambio de INT a VARCHAR(255)
     challenge_id INT,
     solution TEXT,
     language VARCHAR(255),
@@ -60,7 +63,7 @@ CREATE TABLE Careers (
     experiencia INT,
     jornada_laboral VARCHAR(255),
     tipo_contrato VARCHAR(255),
-    imagen_base64 TEXT, 
+    imagen_base64 TEXT, -- Nueva columna para la imagen en base64
     role_id INT,
     challenge_id INT,
     FOREIGN KEY (role_id) REFERENCES Roles(id),
@@ -74,9 +77,15 @@ INSERT INTO Roles (name) VALUES ('Oro');
 INSERT INTO Roles (name) VALUES ('Diamante');
 INSERT INTO Roles (name) VALUES ('Admin');
 
-INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('milan', 'milan@ctflags.com', '/path/to/profile_pic1.jpg', 5);
-INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('moha', 'moha@ctflags.com', '/path/to/profile_pic2.jpg', 5);
-INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('alex', 'alex@ctUsersflags.com', '/path/to/profile_pic3.jpg', 5);
+INSERT INTO Users (id, username, email, profile_pic, linkedin_url, github_url, hackthebox_url, role_id) 
+VALUES ('1', 'milan', 'milan@ctflags.com', '/path/to/profile_pic1.jpg', 'https://linkedin.com/milan', 'https://github.com/milan', 'https://hackthebox.eu/milan', 5);
+
+INSERT INTO Users (id, username, email, profile_pic, linkedin_url, github_url, hackthebox_url, role_id) 
+VALUES ('2', 'moha', 'moha@ctflags.com', '/path/to/profile_pic2.jpg', 'https://linkedin.com/moha', 'https://github.com/moha', 'https://hackthebox.eu/moha', 5);
+
+INSERT INTO Users (id, username, email, profile_pic, linkedin_url, github_url, hackthebox_url, role_id) 
+VALUES ('3', 'alex', 'alex@ctUsersflags.com', '/path/to/profile_pic3.jpg', 'https://linkedin.com/alex', 'https://github.com/alex', 'https://hackthebox.eu/alex', 5);
+
 
 -- Inserciones de desafíos
 INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Test', '#test', 'flagtest', 1000, 'Easy');
@@ -116,25 +125,25 @@ INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('De
 -- Inserciones de soluciones para los desafíos creados
 
 -- Soluciones para el desafío de desarrollo web
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 2, 'Aquí está mi solución para el desafío de desarrollo web.', 'JavaScript');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 2, 'Esta es mi solución para el desafío de desarrollo web.', 'HTML/CSS');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('1', 2, 'Aquí está mi solución para el desafío de desarrollo web.', 'JavaScript');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('2', 2, 'Esta es mi solución para el desafío de desarrollo web.', 'HTML/CSS');
 
 -- Soluciones para el desafío de análisis de datos
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 3, 'Aquí está mi solución para el desafío de análisis de datos.', 'Python');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 3, 'Esta es mi solución para el desafío de análisis de datos.', 'SQL');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('1', 3, 'Aquí está mi solución para el desafío de análisis de datos.', 'Python');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('3', 3, 'Esta es mi solución para el desafío de análisis de datos.', 'SQL');
 
 -- Soluciones para el desafío de diseño gráfico
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 4, 'Aquí está mi solución para el desafío de diseño gráfico.', 'Photoshop');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 4, 'Esta es mi solución para el desafío de diseño gráfico.', 'Illustrator');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('2', 4, 'Aquí está mi solución para el desafío de diseño gráfico.', 'Photoshop');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('3', 4, 'Esta es mi solución para el desafío de diseño gráfico.', 'Illustrator');
 
 -- Soluciones para el desafío de ingeniería de software
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 5, 'Aquí está mi solución para el desafío de ingeniería de software.', 'Java');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 5, 'Esta es mi solución para el desafío de ingeniería de software.', 'Spring');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('1', 5, 'Aquí está mi solución para el desafío de ingeniería de software.', 'Java');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('2', 5, 'Esta es mi solución para el desafío de ingeniería de software.', 'Spring');
 
 -- Soluciones para el desafío de marketing digital
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 6, 'Aquí está mi solución para el desafío de marketing digital.', 'SEO');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 6, 'Esta es mi solución para el desafío de marketing digital.', 'SEM');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('1', 6, 'Aquí está mi solución para el desafío de marketing digital.', 'SEO');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('3', 6, 'Esta es mi solución para el desafío de marketing digital.', 'SEM');
 
 -- Soluciones para el desafío de administración de sistemas
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 7, 'Aquí está mi solución para el desafío de administración de sistemas.', 'Linux');
-INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 7, 'Esta es mi solución para el desafío de administración de sistemas.', 'Windows');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('2', 7, 'Aquí está mi solución para el desafío de administración de sistemas.', 'Linux');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES ('3', 7, 'Esta es mi solución para el desafío de administración de sistemas.', 'Windows');

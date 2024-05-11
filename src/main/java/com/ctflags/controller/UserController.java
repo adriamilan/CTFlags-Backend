@@ -67,6 +67,9 @@ public class UserController {
 	        existingUser.setUsername(updatedUser.getUsername());
 	        existingUser.setEmail(updatedUser.getEmail());
 	        existingUser.setProfile_pic(updatedUser.getProfile_pic());
+	        existingUser.setLinkedin_url(updatedUser.getLinkedin_url());
+	        existingUser.setGithub_url(updatedUser.getGithub_url());
+	        existingUser.setHackthebox_url(updatedUser.getHackthebox_url());
 	        existingUser.setPoints(updatedUser.getPoints());
 	        existingUser.setRole(updatedUser.getRole());
 	        
