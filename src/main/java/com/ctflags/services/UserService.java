@@ -41,5 +41,9 @@ public class UserService {
 	public List<User> getAllTopUsers() {
 		return userRepository.findAll(Sort.by(Sort.Direction.DESC, "points"));
     }
+	
+	public void deleteUserById(Long id) {
+	    userRepository.deleteById(id);
+	}
 
 }

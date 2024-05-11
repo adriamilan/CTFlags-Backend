@@ -25,9 +25,6 @@ public class User {
 
 	private Integer points;
 
-//    @Column(name="role_id")
-//    private Integer roleId;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Role role;

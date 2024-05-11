@@ -56,6 +56,9 @@ public class Career {
     @Column(name="tipo_contrato")
     private String tipo_contrato;
     
+    @Column(name="logo_empresa_url")
+    private String logo_empresa_url;
+    
     @Column(name="role_id")
     Integer role_id;
     

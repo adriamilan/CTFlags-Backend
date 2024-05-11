@@ -20,62 +20,71 @@ import com.ctflags.services.CareerService;
 
 @RestController
 public class CareerController {
-	
-	@Autowired
-	CareerService careerService;
-	
-	@GetMapping("/careers")
-	public List<Career> getCareers() {
-		return careerService.findAllCareer();
-	}
-	
-	@GetMapping("/career/{id}")
-	public Optional<Career> getCareerById(@PathVariable Long id) {
-		
-		return careerService.findCareerById(id);
-	}
-	
-	@PostMapping("/career") 
-	public Career saveCareer(@RequestBody Career career) {
-		System.out.println(career);
-		return careerService.saveCareer(career);
-	}
-	
-	@PutMapping("/career/{id}")
-	public ResponseEntity<Career> updateCareer(@PathVariable Long id, @RequestBody Career updatedCareer) {
-	    Optional<Career> existingCareerOptional = careerService.findCareerById(id);
-	    if (existingCareerOptional.isPresent()) {
-	        Career existingCareer = existingCareerOptional.get();
-	        // Actualiza todos los campos de la carrera existente con los datos proporcionados
-	        existingCareer.setName(updatedCareer.getName());
-	        existingCareer.setDescription(updatedCareer.getDescription());
-	        existingCareer.setCompany_name(updatedCareer.getCompany_name()); // Suponiendo que existe un método setCompanyName en la clase Career
-	        existingCareer.setRole_id(updatedCareer.getRole_id()); // Suponiendo que existe un método setRoleId en la clase Career
-	        existingCareer.setChallenge_id(updatedCareer.getChallenge_id()); // Suponiendo que existe un método setChallengeId en la clase Career
-	        // Actualiza otros campos según sea necesario
-	        
-	        // Guarda la carrera actualizada
-	        Career savedCareer = careerService.saveCareer(existingCareer);
-	        
-	        return ResponseEntity.ok(savedCareer);
-	    } else {
-	        // Si no se encuentra la carrera con el ID proporcionado, retorna un código de estado 404
-	        throw new ResourceNotFoundException("Career not found with id: " + id);
-	    }
-	}
+    
+    @Autowired
+    CareerService careerService;
+    
+    @GetMapping("/careers")
+    public List<Career> getCareers() {
+        return careerService.findAllCareer();
+    }
+    
+    @GetMapping("/career/{id}")
+    public Optional<Career> getCareerById(@PathVariable Long id) {
+        
+        return careerService.findCareerById(id);
+    }
+    
+    @PostMapping("/career") 
+    public Career saveCareer(@RequestBody Career career) {
+        System.out.println(career);
+        return careerService.saveCareer(career);
+    }
+    
+    @PutMapping("/career/{id}")
+    public ResponseEntity<Career> updateCareer(@PathVariable Long id, @RequestBody Career updatedCareer) {
+        Optional<Career> existingCareerOptional = careerService.findCareerById(id);
+        if (existingCareerOptional.isPresent()) {
+            Career existingCareer = existingCareerOptional.get();
+            // Actualiza todos los campos de la carrera existente con los datos proporcionados
+            existingCareer.setName(updatedCareer.getName());
+            existingCareer.setDescription(updatedCareer.getDescription());
+            existingCareer.setCompany_name(updatedCareer.getCompany_name());
+            existingCareer.setFecha(updatedCareer.getFecha());
+            existingCareer.setProvincia(updatedCareer.getProvincia());
+            existingCareer.setTeletrabajo(updatedCareer.isTeletrabajo());
+            existingCareer.setPresencial(updatedCareer.isPresencial());
+            existingCareer.setHibrido(updatedCareer.isHibrido());
+            existingCareer.setSalario(updatedCareer.getSalario());
+            existingCareer.setExperiencia(updatedCareer.getExperiencia());
+            existingCareer.setJornada_laboral(updatedCareer.getJornada_laboral());
+            existingCareer.setTipo_contrato(updatedCareer.getTipo_contrato());
+            existingCareer.setLogo_empresa_url(updatedCareer.getLogo_empresa_url()); // Nuevo campo
+            existingCareer.setRole_id(updatedCareer.getRole_id());
+            existingCareer.setChallenge_id(updatedCareer.getChallenge_id());
+            
+            // Guarda la carrera actualizada
+            Career savedCareer = careerService.saveCareer(existingCareer);
+            
+            return ResponseEntity.ok(savedCareer);
+        } else {
+            // Si no se encuentra la carrera con el ID proporcionado, retorna un código de estado 404
+            throw new ResourceNotFoundException("Career not found with id: " + id);
+        }
+    }
 
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public class ResourceNotFoundException extends RuntimeException {
-	    private static final long serialVersionUID = 1L;
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public class ResourceNotFoundException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
 
-		public ResourceNotFoundException(String message) {
-	        super(message);
-	    }
-	}
+        public ResourceNotFoundException(String message) {
+            super(message);
+        }
+    }
 
-	
-	@DeleteMapping("/career/{id}")
-	public void deleteCareer(@PathVariable Long id) {
-	    careerService.deleteCareerById(id);
-	}
+    
+    @DeleteMapping("/career/{id}")
+    public void deleteCareer(@PathVariable Long id) {
+        careerService.deleteCareerById(id);
+    }
 }

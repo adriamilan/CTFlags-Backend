@@ -76,4 +76,63 @@ INSERT INTO Users (username, email, role_id) VALUES ('milan', 'milan@ctflags.com
 INSERT INTO Users (username, email, role_id) VALUES ('moha', 'moha@ctflags.com', 5);
 INSERT INTO Users (username, email, role_id) VALUES ('alex', 'alex@ctUsersflags.com', 5);
 
+-- Inserciones de desafíos
 INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Test', '#test', 'flagtest', 1000, 'Easy');
+
+-- Inserciones de carreras vinculadas a los desafíos existentes
+INSERT INTO Careers (name, description, company_name, fecha, provincia, teletrabajo, presencial, hibrido, salario, experiencia, jornada_laboral, tipo_contrato, role_id, challenge_id)
+VALUES 
+('Desarrollador Web Remoto', 'Desarrollo de aplicaciones web utilizando tecnologías modernas como HTML, CSS, JavaScript y frameworks como React o Angular.', 'Tech Solutions Inc.', '2024-05-07', 'Madrid', TRUE, FALSE, FALSE, 60000, 3, 'Tiempo completo', 'Contrato permanente', 1, 1),
+('Analista de Datos', 'Análisis y procesamiento de grandes volúmenes de datos utilizando herramientas como SQL, Python y Tableau.', 'Data Insights Ltd.', '2024-05-08', 'Barcelona', FALSE, TRUE, FALSE, 55000, 2, 'Tiempo completo', 'Contrato indefinido', 2, 1),
+('Diseñador Gráfico Híbrido', 'Creación de elementos visuales para campañas de marketing y desarrollo de branding corporativo.', 'Design Innovations SL', '2024-05-09', 'Valencia', TRUE, TRUE, TRUE, 45000, 4, 'Tiempo completo', 'Contrato temporal', 3, 1),
+('Ingeniero de Software', 'Desarrollo de aplicaciones empresariales utilizando tecnologías como Java, Spring y bases de datos relacionales.', 'Code Wizards SL', '2024-05-10', 'Madrid', FALSE, TRUE, FALSE, 70000, 5, 'Tiempo completo', 'Contrato permanente', 1, 1),
+('Especialista en Marketing Digital', 'Planificación y ejecución de estrategias de marketing online, incluyendo SEO, SEM y redes sociales.', 'Digital Ventures Ltd.', '2024-05-11', 'Barcelona', TRUE, TRUE, TRUE, 60000, 3, 'Tiempo completo', 'Contrato indefinido', 4, 1),
+('Administrador de Sistemas', 'Mantenimiento y configuración de servidores y redes, asegurando la disponibilidad y seguridad de los sistemas informáticos.', 'SysAdmin Solutions SL', '2024-05-12', 'Valencia', TRUE, FALSE, FALSE, 65000, 4, 'Tiempo completo', 'Contrato temporal', 5, 1);
+
+
+-- Inserciones de desafíos vinculados a carreras existentes
+
+-- Desafío vinculado a la carrera "Desarrollador Web Remoto"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío Desarrollo Web', 'Desafío de desarrollo web remoto para Tech Solutions Inc.', 'webdevchallenge', 1500, 'Medium');
+
+-- Desafío vinculado a la carrera "Analista de Datos"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Análisis de Datos', 'Desafío de análisis de datos para Data Insights Ltd.', 'datanalysistask', 1200, 'Hard');
+
+-- Desafío vinculado a la carrera "Diseñador Gráfico Híbrido"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Diseño Gráfico', 'Desafío de diseño gráfico híbrido para Design Innovations SL.', 'graphicdesignchallenge', 1000, 'Easy');
+
+-- Desafío vinculado a la carrera "Ingeniero de Software"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Ingeniería de Software', 'Desafío de ingeniería de software para Code Wizards SL.', 'softwareengineeringtask', 2000, 'Hard');
+
+-- Desafío vinculado a la carrera "Especialista en Marketing Digital"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Marketing Digital', 'Desafío de marketing digital para Digital Ventures Ltd.', 'digitalmarketingchallenge', 1800, 'Medium');
+
+-- Desafío vinculado a la carrera "Administrador de Sistemas"
+INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Administración de Sistemas', 'Desafío de administración de sistemas para SysAdmin Solutions SL.', 'sysadminchallenge', 1600, 'Hard');
+
+
+-- Inserciones de soluciones para los desafíos creados
+
+-- Soluciones para el desafío de desarrollo web
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 2, 'Aquí está mi solución para el desafío de desarrollo web.', 'JavaScript');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 2, 'Esta es mi solución para el desafío de desarrollo web.', 'HTML/CSS');
+
+-- Soluciones para el desafío de análisis de datos
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 3, 'Aquí está mi solución para el desafío de análisis de datos.', 'Python');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 3, 'Esta es mi solución para el desafío de análisis de datos.', 'SQL');
+
+-- Soluciones para el desafío de diseño gráfico
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 4, 'Aquí está mi solución para el desafío de diseño gráfico.', 'Photoshop');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 4, 'Esta es mi solución para el desafío de diseño gráfico.', 'Illustrator');
+
+-- Soluciones para el desafío de ingeniería de software
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 5, 'Aquí está mi solución para el desafío de ingeniería de software.', 'Java');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 5, 'Esta es mi solución para el desafío de ingeniería de software.', 'Spring');
+
+-- Soluciones para el desafío de marketing digital
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (1, 6, 'Aquí está mi solución para el desafío de marketing digital.', 'SEO');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 6, 'Esta es mi solución para el desafío de marketing digital.', 'SEM');
+
+-- Soluciones para el desafío de administración de sistemas
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (2, 7, 'Aquí está mi solución para el desafío de administración de sistemas.', 'Linux');
+INSERT INTO Solutions (user_id, challenge_id, solution, language) VALUES (3, 7, 'Esta es mi solución para el desafío de administración de sistemas.', 'Windows');
