@@ -12,6 +12,7 @@ CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255),
     email VARCHAR(255),
+    profile_pic VARCHAR(255), 
     points INT DEFAULT 0,
     role_id INT DEFAULT 1,
     UNIQUE(id, username),
@@ -59,6 +60,7 @@ CREATE TABLE Careers (
     experiencia INT,
     jornada_laboral VARCHAR(255),
     tipo_contrato VARCHAR(255),
+    imagen_base64 TEXT, 
     role_id INT,
     challenge_id INT,
     FOREIGN KEY (role_id) REFERENCES Roles(id),
@@ -72,22 +74,22 @@ INSERT INTO Roles (name) VALUES ('Oro');
 INSERT INTO Roles (name) VALUES ('Diamante');
 INSERT INTO Roles (name) VALUES ('Admin');
 
-INSERT INTO Users (username, email, role_id) VALUES ('milan', 'milan@ctflags.com', 5);
-INSERT INTO Users (username, email, role_id) VALUES ('moha', 'moha@ctflags.com', 5);
-INSERT INTO Users (username, email, role_id) VALUES ('alex', 'alex@ctUsersflags.com', 5);
+INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('milan', 'milan@ctflags.com', '/path/to/profile_pic1.jpg', 5);
+INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('moha', 'moha@ctflags.com', '/path/to/profile_pic2.jpg', 5);
+INSERT INTO Users (username, email, profile_pic, role_id) VALUES ('alex', 'alex@ctUsersflags.com', '/path/to/profile_pic3.jpg', 5);
 
 -- Inserciones de desafíos
 INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Test', '#test', 'flagtest', 1000, 'Easy');
 
 -- Inserciones de carreras vinculadas a los desafíos existentes
-INSERT INTO Careers (name, description, company_name, fecha, provincia, teletrabajo, presencial, hibrido, salario, experiencia, jornada_laboral, tipo_contrato, role_id, challenge_id)
+INSERT INTO Careers (name, description, company_name, fecha, provincia, teletrabajo, presencial, hibrido, salario, experiencia, jornada_laboral, tipo_contrato, imagen_base64, role_id, challenge_id)
 VALUES 
-('Desarrollador Web Remoto', 'Desarrollo de aplicaciones web utilizando tecnologías modernas como HTML, CSS, JavaScript y frameworks como React o Angular.', 'Tech Solutions Inc.', '2024-05-07', 'Madrid', TRUE, FALSE, FALSE, 60000, 3, 'Tiempo completo', 'Contrato permanente', 1, 1),
-('Analista de Datos', 'Análisis y procesamiento de grandes volúmenes de datos utilizando herramientas como SQL, Python y Tableau.', 'Data Insights Ltd.', '2024-05-08', 'Barcelona', FALSE, TRUE, FALSE, 55000, 2, 'Tiempo completo', 'Contrato indefinido', 2, 1),
-('Diseñador Gráfico Híbrido', 'Creación de elementos visuales para campañas de marketing y desarrollo de branding corporativo.', 'Design Innovations SL', '2024-05-09', 'Valencia', TRUE, TRUE, TRUE, 45000, 4, 'Tiempo completo', 'Contrato temporal', 3, 1),
-('Ingeniero de Software', 'Desarrollo de aplicaciones empresariales utilizando tecnologías como Java, Spring y bases de datos relacionales.', 'Code Wizards SL', '2024-05-10', 'Madrid', FALSE, TRUE, FALSE, 70000, 5, 'Tiempo completo', 'Contrato permanente', 1, 1),
-('Especialista en Marketing Digital', 'Planificación y ejecución de estrategias de marketing online, incluyendo SEO, SEM y redes sociales.', 'Digital Ventures Ltd.', '2024-05-11', 'Barcelona', TRUE, TRUE, TRUE, 60000, 3, 'Tiempo completo', 'Contrato indefinido', 4, 1),
-('Administrador de Sistemas', 'Mantenimiento y configuración de servidores y redes, asegurando la disponibilidad y seguridad de los sistemas informáticos.', 'SysAdmin Solutions SL', '2024-05-12', 'Valencia', TRUE, FALSE, FALSE, 65000, 4, 'Tiempo completo', 'Contrato temporal', 5, 1);
+('Desarrollador Web Remoto', 'Desarrollo de aplicaciones web utilizando tecnologías modernas como HTML, CSS, JavaScript y frameworks como React o Angular.', 'Tech Solutions Inc.', '2024-05-07', 'Madrid', TRUE, FALSE, FALSE, 60000, 3, 'Tiempo completo', 'Contrato permanente', 'imagen_en_base64_1', 1, 1),
+('Analista de Datos', 'Análisis y procesamiento de grandes volúmenes de datos utilizando herramientas como SQL, Python y Tableau.', 'Data Insights Ltd.', '2024-05-08', 'Barcelona', FALSE, TRUE, FALSE, 55000, 2, 'Tiempo completo', 'Contrato indefinido', 'imagen_en_base64_2', 2, 1),
+('Diseñador Gráfico Híbrido', 'Creación de elementos visuales para campañas de marketing y desarrollo de branding corporativo.', 'Design Innovations SL', '2024-05-09', 'Valencia', TRUE, TRUE, TRUE, 45000, 4, 'Tiempo completo', 'Contrato temporal', 'imagen_en_base64_3', 3, 1),
+('Ingeniero de Software', 'Desarrollo de aplicaciones empresariales utilizando tecnologías como Java, Spring y bases de datos relacionales.', 'Code Wizards SL', '2024-05-10', 'Madrid', FALSE, TRUE, FALSE, 70000, 5, 'Tiempo completo', 'Contrato permanente', 'imagen_en_base64_4', 1, 1),
+('Especialista en Marketing Digital', 'Planificación y ejecución de estrategias de marketing online, incluyendo SEO, SEM y redes sociales.', 'Digital Ventures Ltd.', '2024-05-11', 'Barcelona', TRUE, TRUE, TRUE, 60000, 3, 'Tiempo completo', 'Contrato indefinido', 'imagen_en_base64_5', 4, 1),
+('Administrador de Sistemas', 'Mantenimiento y configuración de servidores y redes, asegurando la disponibilidad y seguridad de los sistemas informáticos.', 'SysAdmin Solutions SL', '2024-05-12', 'Valencia', TRUE, FALSE, FALSE, 65000, 4, 'Tiempo completo', 'Contrato temporal', 'imagen_en_base64_6', 5, 1);
 
 
 -- Inserciones de desafíos vinculados a carreras existentes
@@ -101,7 +103,7 @@ INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('De
 -- Desafío vinculado a la carrera "Diseñador Gráfico Híbrido"
 INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Diseño Gráfico', 'Desafío de diseño gráfico híbrido para Design Innovations SL.', 'graphicdesignchallenge', 1000, 'Easy');
 
--- Desafío vinculado a la carrera "Ingeniero de Software"
+-- Desafío vinculado a la carreira "Ingeniero de Software"
 INSERT INTO Challenges (name, description, flag, points, difficulty) VALUES ('Desafío de Ingeniería de Software', 'Desafío de ingeniería de software para Code Wizards SL.', 'softwareengineeringtask', 2000, 'Hard');
 
 -- Desafío vinculado a la carrera "Especialista en Marketing Digital"

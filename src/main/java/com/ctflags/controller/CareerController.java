@@ -46,7 +46,6 @@ public class CareerController {
         Optional<Career> existingCareerOptional = careerService.findCareerById(id);
         if (existingCareerOptional.isPresent()) {
             Career existingCareer = existingCareerOptional.get();
-            // Actualiza todos los campos de la carrera existente con los datos proporcionados
             existingCareer.setName(updatedCareer.getName());
             existingCareer.setDescription(updatedCareer.getDescription());
             existingCareer.setCompany_name(updatedCareer.getCompany_name());
@@ -59,16 +58,14 @@ public class CareerController {
             existingCareer.setExperiencia(updatedCareer.getExperiencia());
             existingCareer.setJornada_laboral(updatedCareer.getJornada_laboral());
             existingCareer.setTipo_contrato(updatedCareer.getTipo_contrato());
-            existingCareer.setLogo_empresa_url(updatedCareer.getLogo_empresa_url()); // Nuevo campo
+            existingCareer.setImagen_base64(updatedCareer.getImagen_base64());
             existingCareer.setRole_id(updatedCareer.getRole_id());
             existingCareer.setChallenge_id(updatedCareer.getChallenge_id());
             
-            // Guarda la carrera actualizada
             Career savedCareer = careerService.saveCareer(existingCareer);
             
             return ResponseEntity.ok(savedCareer);
         } else {
-            // Si no se encuentra la carrera con el ID proporcionado, retorna un código de estado 404
             throw new ResourceNotFoundException("Career not found with id: " + id);
         }
     }

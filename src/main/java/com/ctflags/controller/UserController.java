@@ -66,6 +66,7 @@ public class UserController {
 	        User existingUser = existingUserOptional.get();
 	        existingUser.setUsername(updatedUser.getUsername());
 	        existingUser.setEmail(updatedUser.getEmail());
+	        existingUser.setProfile_pic(updatedUser.getProfile_pic());
 	        existingUser.setPoints(updatedUser.getPoints());
 	        existingUser.setRole(updatedUser.getRole());
 	        
