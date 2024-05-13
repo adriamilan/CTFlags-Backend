@@ -37,11 +37,47 @@ public class UserController {
 	}
 	
 	@PostMapping("/user")
-	public String saveUser(@RequestBody User user) {
-		
-		user.setPoints(0);
-		return userService.saveUser(user);
+	public ResponseEntity<?> saveUser(@RequestBody User user) {
+	    try {
+	        // Verificar campos obligatorios
+	        if (user.getId() == null) {
+	            return ResponseEntity.badRequest().body("El id es obligatorio.");
+	        }
+	        if (user.getUsername() == null) {
+	            return ResponseEntity.badRequest().body("El nombre de usuario es obligatorio.");
+	        }
+	        if (user.getEmail() == null) {
+	            return ResponseEntity.badRequest().body("El correo electrónico es obligatorio.");
+	        }
+	        if (user.getProfile_pic() == null) {
+	            return ResponseEntity.badRequest().body("La imagen de perfil es obligatoria.");
+	        }
+
+	        // Establecer valores por defecto para campos opcionales
+	        if (user.getPoints() == null) {
+	            user.setPoints(0);
+	        }
+	        if (user.getLinkedin_url() == null) {
+	            user.setLinkedin_url("");
+	        }
+	        if (user.getGithub_url() == null) {
+	            user.setGithub_url("");
+	        }
+	        if (user.getHackthebox_url() == null) {
+	            user.setHackthebox_url("");
+	        }
+	        // Continuar verificando y estableciendo valores por defecto para otros campos opcionales si es necesario...
+
+	        // Guardar el usuario y devolver la respuesta adecuada
+	        String savedUser = userService.saveUser(user);
+	        return ResponseEntity.ok(savedUser);
+	    } catch (Exception e) {
+	        // Manejar cualquier excepción y devolver una respuesta de error
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el usuario: " + e.getMessage());
+	    }
 	}
+
+
 	
   	@GetMapping("/ranking")
       public List<User> getAllTopUsers() {

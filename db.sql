@@ -9,13 +9,13 @@ CREATE TABLE Roles (
 );
 
 CREATE TABLE Users (
-    id VARCHAR(255) PRIMARY KEY, -- Cambio de INT AUTO_INCREMENT a VARCHAR(255)
+    id VARCHAR(255) UNIQUE,
     username VARCHAR(255),
     email VARCHAR(255),
-    profile_pic VARCHAR(255), -- Columna para la foto de perfil
-    linkedin_url VARCHAR(255), -- Columna para la URL de LinkedIn
-    github_url VARCHAR(255), -- Columna para la URL de GitHub
-    hackthebox_url VARCHAR(255), -- Columna para la URL de HackTheBox
+    profile_pic VARCHAR(255),
+    linkedin_url VARCHAR(255),
+    github_url VARCHAR(255), 
+    hackthebox_url VARCHAR(255),
     points INT DEFAULT 0,
     role_id INT DEFAULT 1,
     UNIQUE(username),
