@@ -22,7 +22,7 @@ public class UserService {
 		return users;
 	}
 
-	public Optional<User> findUserById(Long id) {
+	public Optional<User> findUserById(String id) {
 
 		Optional<User> user = userRepository.findById(id);
 		
@@ -42,7 +42,7 @@ public class UserService {
 		return userRepository.findAll(Sort.by(Sort.Direction.DESC, "points"));
     }
 	
-	public void deleteUserById(Long id) {
+	public void deleteUserById(String id) {
 	    userRepository.deleteById(id);
 	}
 

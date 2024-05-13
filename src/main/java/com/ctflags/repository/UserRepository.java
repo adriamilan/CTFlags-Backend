@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ctflags.entities.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
 	
 	@Query("SELECT u FROM User u ORDER BY u.points DESC")
     List<User> findTopNOrderByPoints(PageRequest pageRequest);

@@ -31,7 +31,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public Optional<User> getUserById(@PathVariable Long id) {
+	public Optional<User> getUserById(@PathVariable String id) {
 		
 		return userService.findUserById(id);
 	}
@@ -91,12 +91,12 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable String id) {
         userService.deleteUserById(id);
     }
 	
 	@PutMapping("/user/{id}")
-	public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+	public ResponseEntity<String> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
 	    Optional<User> existingUserOptional = userService.findUserById(id);
 	    if (existingUserOptional.isPresent()) {
 	        User existingUser = existingUserOptional.get();
