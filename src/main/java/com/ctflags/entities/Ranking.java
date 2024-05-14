@@ -19,7 +19,7 @@ public class Ranking {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
     
     private String username;
     

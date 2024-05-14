@@ -39,7 +39,6 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<?> saveUser(@RequestBody User user) {
 	    try {
-	        // Verificar campos obligatorios
 	        if (user.getId() == null) {
 	            return ResponseEntity.badRequest().body("El id es obligatorio.");
 	        }
@@ -53,7 +52,6 @@ public class UserController {
 	            return ResponseEntity.badRequest().body("La imagen de perfil es obligatoria.");
 	        }
 
-	        // Establecer valores por defecto para campos opcionales
 	        if (user.getPoints() == null) {
 	            user.setPoints(0);
 	        }
@@ -66,13 +64,10 @@ public class UserController {
 	        if (user.getHackthebox_url() == null) {
 	            user.setHackthebox_url("");
 	        }
-	        // Continuar verificando y estableciendo valores por defecto para otros campos opcionales si es necesario...
 
-	        // Guardar el usuario y devolver la respuesta adecuada
 	        String savedUser = userService.saveUser(user);
 	        return ResponseEntity.ok(savedUser);
 	    } catch (Exception e) {
-	        // Manejar cualquier excepción y devolver una respuesta de error
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el usuario: " + e.getMessage());
 	    }
 	}
@@ -86,7 +81,6 @@ public class UserController {
 	
 	@GetMapping("/ranking/{limit}")
 	public Optional<List<User>> getTopUsers(@PathVariable int limit) {
-		System.out.println(limit);
 		return Optional.ofNullable(userService.getTopUsers(limit));
 	}
 	
