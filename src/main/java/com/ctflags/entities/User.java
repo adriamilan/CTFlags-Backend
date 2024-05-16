@@ -15,25 +15,25 @@ import lombok.Data;
 @Table(name = "Users")
 public class User {
 
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	private String username;
+    private String username;
 
-	private String email;
-	
-	private String profile_pic;
-	
-	private String linkedin_url;
-	
-	private String github_url;
-	
-	private String hackthebox_url;
+    private String email;
+    
+    private String profile_pic;
+    
+    private String linkedin_url;
+    
+    private String github_url;
+    
+    private String hackthebox_url;
 
-	private Integer points;
+    private Integer points;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private Role role;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 
 }
